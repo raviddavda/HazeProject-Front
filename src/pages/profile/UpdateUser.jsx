@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Grid, Box, Typography, Divider } from "@mui/material";
 import axios from "axios";
 import ROUTES from "../../routes/ROUTES";
@@ -6,9 +6,10 @@ import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import { validateUserUpdate } from "../../validations/updateUserValidation";
 import normalizeData from "./normalizeData";
-import inputsData from "./inputsData";
+import inputsData from "../register/inputsData";
 import ContainerComp from "../../components/ContainerComp";
 import FieldTextComp from "../../components/FieldTextComp";
+import normalizeDataFromServer from "./normalizeDataFromServer";
 
 const RegisterPage = () => {
   const [inputsValue, setInputsValue] = useState({
@@ -16,6 +17,7 @@ const RegisterPage = () => {
     middle: "",
     last: "",
     phone: "",
+    email: "",
     url: "",
     alt: "",
     state: "",
@@ -24,6 +26,7 @@ const RegisterPage = () => {
     street: "",
     houseNumber: "",
     zip: "",
+    isBusiness: "",
   });
   const [errorsState, setErrorsState] = useState(false);
   const navigate = useNavigate();
@@ -35,6 +38,26 @@ const RegisterPage = () => {
       [e.target.id]: e.target.value,
     }));
   };
+
+  //get user details
+  useEffect(() => {
+    axios
+      .get(`/users/${id}`)
+      .then(({ data }) => {
+        setInputsValue(normalizeDataFromServer(data.rest));
+      })
+      .catch((error) => {
+        toast.error("Could not fetch account!", {
+          position: "top-center",
+          autoClose: 1000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          draggable: true,
+          theme: localStorage.getItem("darkMode") ? "dark" : "light",
+          toastId: "profile",
+        });
+      });
+  }, [id]);
 
   const handleSubmit = async (event) => {
     try {
@@ -87,6 +110,7 @@ const RegisterPage = () => {
             key={index}
             id={input.id}
             label={input.label}
+            type={input.type}
             required={input.required}
             value={inputsValue[input.value]}
             onChange={handleInputChange}

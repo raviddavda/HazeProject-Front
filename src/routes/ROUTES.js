@@ -1,6 +1,10 @@
 const ROUTES = {
   HOME: "/",
   ABOUT: "/about",
+  ACTION: "/action",
+  ADVENTURE: "/adventure",
+  RPG: "/rpg",
+  SHOOTER: "/shooter",
   WISHLIST: "/wishlist",
   MYGAMES: "/mygames",
   REGISTER: "/register",

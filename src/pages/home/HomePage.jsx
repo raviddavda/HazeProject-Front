@@ -26,8 +26,10 @@ const HomePage = () => {
     axios
       .get("/games")
       .then(({ data }) => {
-        setDataFromServer(data.allGames);
-        setTotalPages(Math.ceil(data.allGames.length / itemsPerPage));
+        const gamesArray = data.allGames;
+        const sorted = gamesArray.reverse();
+        setDataFromServer(sorted);
+        setTotalPages(Math.ceil(sorted.length / itemsPerPage));
       })
       .catch((error) => {
         toast.error("Could not fetch games!", {
@@ -45,7 +47,7 @@ const HomePage = () => {
   //pagination logic
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
-  const subset = dataFromServer.slice(startIndex, endIndex).reverse();
+  const subset = dataFromServer.slice(startIndex, endIndex);
 
   const handlePageChange = (event, selectedPage) => {
     setCurrentPage(selectedPage);

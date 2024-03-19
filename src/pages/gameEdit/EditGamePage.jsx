@@ -45,6 +45,7 @@ const EditGamePage = () => {
     }));
   };
 
+  //get game details
   useEffect(() => {
     axios
       .get(`/games/${id}`)

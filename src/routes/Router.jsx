@@ -1,4 +1,3 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import ROUTES from "./ROUTES";
 import HomePage from "../pages/home/HomePage";
@@ -18,12 +17,20 @@ import UserManagerPage from "../pages/userManagment/UserManagerPage";
 import NotLoggedInGuard from "../Guard/NotLoggedInGuard";
 import AddGamePage from "../pages/gameEdit/addGamePage";
 import EditGamePage from "../pages/gameEdit/EditGamePage";
+import ActionPage from "../pages/categories/actionPage/ActionPage";
+import AdventurePage from "../pages/categories/adventurePage/AdventurePage";
+import RpgPage from "../pages/categories/rpgPage/RpgPage";
+import ShooterPage from "../pages/categories/shooterPage/ShooterPage";
 
 const Router = () => {
   return (
     <Routes>
       <Route path={ROUTES.HOME} element={<HomePage />} />
       <Route path={ROUTES.ABOUT} element={<AboutPage />} />
+      <Route path={ROUTES.ACTION} element={<ActionPage />} />
+      <Route path={ROUTES.ADVENTURE} element={<AdventurePage />} />
+      <Route path={ROUTES.RPG} element={<RpgPage />} />
+      <Route path={ROUTES.SHOOTER} element={<ShooterPage />} />
       <Route
         path={ROUTES.REGISTER}
         element={

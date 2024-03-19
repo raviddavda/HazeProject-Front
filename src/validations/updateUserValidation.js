@@ -36,6 +36,29 @@ const userUpdateSchema = Joi.object({
       "string.pattern.base": "Must be a valid Israeli phone number",
     })
     .required(),
+  email: Joi.string()
+    .email({ tlds: { allow: false } })
+    .min(5)
+    .messages({
+      "string.empty": "This field is required",
+      "string.email": "Must be a valid email",
+      "string.min": "Must be a valid email",
+    })
+    .required(),
+  password: Joi.string()
+    .pattern(
+      new RegExp(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-])[A-Za-z\d!@#$%^&*-]{6,}$/
+      )
+    )
+    .messages({
+      "string.pattern.base":
+        "Password must be at least nine characters long and contain an uppercase letter, a lowercase letter, a number and one of the following characters !@#$%^&*-",
+      "string.empty": "This field is required",
+    })
+    .min(9)
+    .max(40)
+    .required(),
   image: Joi.object().keys({
     url: Joi.string().min(14).allow(""),
     alt: Joi.string().min(2).max(256).allow(""),
@@ -65,10 +88,12 @@ const userUpdateSchema = Joi.object({
         "number.base": "House Number must be a number",
       })
       .required(),
-    zip: Joi.number()
-      .messages({ "number.min": "ZIP must have atleast 2 numbers" })
-      .allow(""),
+    zip: Joi.string()
+      .min(2)
+      .allow("")
+      .messages({ "number.min": "ZIP must have at least 2 numbers" }),
   }),
+  isBusiness: Joi.boolean(),
 });
 
 const validateUserUpdate = (inputToCheck) =>

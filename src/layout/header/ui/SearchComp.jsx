@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Search from "./Search";
 import SearchIconWrapper from "./SearchIconWrapper";
 import StyledInputBase from "./StyledInputBase";

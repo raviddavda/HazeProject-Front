@@ -22,6 +22,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authActions } from "../../store/auth";
 import TabsRouter from "./ui/TabsComp";
 import axios from "axios";
+import DrawerComponent from "../drawer/DrawerComponent";
 
 const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -115,6 +116,7 @@ const HeaderComponent = ({ isDarkTheme, onThemeChange }) => {
           >
             Haze
           </Typography>
+          {/* <DrawerComponent /> */}
           <SearchComp />
           <TabsRouter />
           <LightModeIcon color="inherit" />

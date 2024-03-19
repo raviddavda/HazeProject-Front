@@ -27,6 +27,7 @@ const ProfilePage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  //get user details
   useEffect(() => {
     axios
       .get(`/users/${id}`)

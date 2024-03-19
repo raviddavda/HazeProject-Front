@@ -3,6 +3,8 @@ const fieldTextUserEditInputArr = [
   { id: "middle", label: "Middle Name", value: "middle" },
   { id: "last", label: "Last Name", value: "last", required: true },
   { id: "phone", label: "Phone Number", value: "phone", required: true },
+  { id: "email", label: "Email", value: "email", required: true },
+  { id: "password", label: "Password", value: "password", required: true },
   { id: "url", label: "Image URL", value: "url" },
   { id: "alt", label: "Image Text", value: "alt" },
   { id: "state", label: "State", value: "state" },
